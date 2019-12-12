@@ -9,6 +9,7 @@ class App extends Component {
     super(props);
     this.state = { products: [], filteredProducts: [] };
     this.handleChangeSort = this.handleChangeSort.bind(this);
+    this.handleChangeSize = this.handleChangeSize.bind(this);
   }
   componentWillMount() {
     fetch("http://localhost:8000/products")
@@ -25,6 +26,11 @@ class App extends Component {
     this.listProducts();
   }
 
+  handleChangeSize = (e) =>{
+    this.setState({size: e.target.value});
+    this.listProducts();
+  }
+
   listProducts =()=>{
     this.setState(state => {
       if(state.sort !== ''){
@@ -35,10 +41,10 @@ class App extends Component {
       }else {
         state.products.sort((a,b)=>(a.id > b.id)?1:-1);
       }
-    //  if(state.size !== ''){
-    //    return{filteredProducts:state.products.filter(a=>
-    //      a.availableSizes.indexOf(state.size.toUpperCase()) >= 0)};
-    //  }
+      if(state.size !== ''){
+        return{filteredProducts:state.products.filter(a=>
+          a.availableSizes.indexOf(state.size.toUpperCase()) >= 0)};
+      }
       return {filteredProducts: state.products};
     })
 
@@ -50,7 +56,7 @@ class App extends Component {
         <hr />
         <div className="row">
           <div className="col-md-8">
-            <Filter count={this.state.filteredProducts.length} handleChangeSort={this.handleChangeSort} handleSizeChange={this.handleSizeChange}/>
+            <Filter count={this.state.filteredProducts.length} handleChangeSort={this.handleChangeSort} handleChangeSize={this.handleChangeSize}/>
             <hr />
             <Products
               products={this.state.filteredProducts}
