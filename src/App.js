@@ -3,11 +3,12 @@ import logo from "./logo.svg";
 import "./App.css";
 import Products from "./components/Products";
 import Filter from "./components/Filter";
+import Basket from "./components/Basket";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { products: [], filteredProducts: [] };
+    this.state = { products: [], filteredProducts: [], cartItems:[] };
     this.handleChangeSort = this.handleChangeSort.bind(this);
     this.handleChangeSize = this.handleChangeSize.bind(this);
   }
@@ -63,7 +64,9 @@ class App extends Component {
               handleAddToCart={this.handleAddToCart}
             />
           </div>
-          <div className="col-md-4"></div>
+          <div className="col-md-4">
+            <Basket cartItems={this.state.cartItems} handleRemoveFromCart={this.handleRemoveCart} />
+          </div>
         </div>
       </div>
     );
