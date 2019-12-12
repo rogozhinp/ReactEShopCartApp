@@ -4,6 +4,7 @@ import "./App.css";
 import Products from "./components/Products";
 import Filter from "./components/Filter";
 import Basket from "./components/Basket";
+import store from "./store";
 
 class App extends Component {
   constructor(props) {
@@ -91,6 +92,7 @@ class App extends Component {
 
   render() {
     return (
+      <Provider store={store}>
       <div className="container">
         <h1>Ecommerce Shopping Cart Application</h1>
         <hr />
@@ -108,6 +110,7 @@ class App extends Component {
           </div>
         </div>
       </div>
+      </Provider>
     );
   }
 }
