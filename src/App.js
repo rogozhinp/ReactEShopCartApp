@@ -74,7 +74,7 @@ class App extends Component {
         }
       });
       if(!productAlreadyInCart){
-        cartItems.push({... product, coutn:1});
+        cartItems.push({... product, count:1});
       }
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
       return cartItems;
@@ -84,7 +84,7 @@ class App extends Component {
   handleRemoveFromCart(e, item){
     this.setState(state=>{
       const cartItems = state.cartItems.filter(elm => elm.id !== item.id);
-      localStorage.setItem('cartItem', cartItems);
+      localStorage.setItem('cartItems', cartItems);
       return {cartItems};
     })
   }
