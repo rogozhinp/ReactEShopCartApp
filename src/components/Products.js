@@ -4,10 +4,10 @@ import util from '../util'
 export default class Products extends Component {
   render() {
     const productItems = this.props.products.map(product => (
-      <div className="col-md-4">
+      <div className="col-md-4" key={product.id}>
         <div className="thumbnail text-center">
-          <a href={'#${product.id}'} onClick={(e)=>this.props.handleAddToCard(e, product)}>
-                <img src={'/products/876661122392077_2.jpg'} alt={product.title} />
+          <a href={`#${product.id}`} onClick={(e)=>this.props.handleAddToCard(e, product)}>
+                <img src={`/products/${product.sku}_2.jpg`} alt={product.title} />
             <p>{product.title}</p>
           </a>
           <div>
